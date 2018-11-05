@@ -1,0 +1,20 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def testServDeps = rootProject.ext.unitTesting
+    def servDeps = rootProject.ext.network
+    implementation project(':data')
+
+    implementation servDeps.gson
+    implementation servDeps.okhttp
+    implementation servDeps.loggingOkhttp
+    implementation servDeps.retrofit
+    implementation servDeps.retrofitGson
+
+    testImplementation testServDeps.junit
+    testImplementation testServDeps.mockito
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
