@@ -2,8 +2,11 @@ package com.hacaller.modularappcars;
 
 import android.app.Application;
 
-import com.hacaller.business.CarUseCases;
+import com.hacaller.business.CarCaseExecutorCanary;
+import com.hacaller.business.CarCaseExecutorVanilla;
+import com.hacaller.business.CarUseCase;
 import com.hacaller.business.CarRepository;
+import com.hacaller.business.UseCaseExecutorFactory;
 import com.hacaller.data.CarRepositoryImpl;
 import com.hacaller.data.CarService;
 import com.hacaller.services.CarServiceImpl;
@@ -36,8 +39,8 @@ public class ApplicationEntryPoint extends Application {
     //  |
     //  V
     // Business Layer
-    CarUseCases getCarCaseFactory(){
-        return new CarUseCases(getCarRepository());
+    CarCaseExecutorVanilla getCarCaseExecutor(){
+        return new CarCaseExecutorVanilla().setCarRepository(getCarRepository());
     }
 
     //  |

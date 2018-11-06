@@ -13,10 +13,10 @@ public class CarCaseExecutorCanary extends UseCaseExecutorFactory {
 
     @Override
     public void execute() {
-        if (task == null) return;
+        //if (task == null) return;
         showWorkingThread();
-        if (task instanceof Runnable) {
-            completableFuture = CompletableFuture.runAsync((Runnable) task, executor);
+        if (true) {
+            //completableFuture = CompletableFuture.supplyAsync((Runnable) task, executor);
             completableFuture.whenComplete(new BiConsumer() {
                 @Override
                 public void accept(Object o, Object o2) {
