@@ -9,14 +9,16 @@ public class Car {
     String logo;
     String website;
     int foundedYear;
+    String brand;
     String carPhoto;
     int rating;
 
-    public Car(int id, String logo, String website, int foundedYear, String carPhoto, int rating) {
+    public Car(int id, String logo, String website, int foundedYear, String brand, String carPhoto, int rating) {
         this.id = id;
         this.logo = logo;
         this.website = website;
         this.foundedYear = foundedYear;
+        this.brand = brand;
         this.carPhoto = carPhoto;
         this.rating = rating;
     }
@@ -67,5 +69,13 @@ public class Car {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

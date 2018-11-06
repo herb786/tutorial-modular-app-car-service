@@ -19,6 +19,7 @@ public class CarObjectMapping {
         return new CarResponse(
                 item.getId(),
                 item.getLogo(),
+                item.getBrand(),
                 item.getWebsite(),
                 "",
                 item.getFoundedYear(),
@@ -32,6 +33,7 @@ public class CarObjectMapping {
                 item.getLogo(),
                 item.getWebsite(),
                 item.getFoundedYear(),
+                item.getBrand(),
                 extractCarPhoto(item.getCarPhotos()),
                 0
         );

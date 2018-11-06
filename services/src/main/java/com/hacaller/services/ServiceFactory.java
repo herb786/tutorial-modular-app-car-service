@@ -8,11 +8,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceFactory {
 
-    public ServiceEndpoint getCustomRetrofitService()  {
+    public static ServiceEndpoint buildRetrofitService()  {
         return getCustomRetrofit().create(ServiceEndpoint.class);
     }
 
-    public Retrofit getCustomRetrofit() {
+    public static Retrofit getCustomRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl("https://hacagusae.appspot.com/")
                 .addConverterFactory(GsonConverterFactory.create())

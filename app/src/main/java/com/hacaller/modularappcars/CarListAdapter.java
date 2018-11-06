@@ -50,12 +50,12 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.CarViewH
         CarItemBinding binding;
 
         public CarViewHolder(CarItemBinding binding) {
-            super(binding);
+            super(binding.getRoot());
             this.binding = binding;
         }
 
         public void bind(Car car){
-            binding.txtName.setText(car.getLogo());
+            binding.txtName.setText(car.getBrand());
             binding.txtWebsite.setText(car.getWebsite());
             if (car.getLogo().length() > 0) Picasso.get().load(car.getLogo()).into(binding.imgCar);
             binding.executePendingBindings();

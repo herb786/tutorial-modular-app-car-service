@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
  */
 public class CarCaseExecutorTest {
 
-    CaseObserver caseObserver = new CaseObserver<List<Car>>() {
+    UseCaseObserver useCaseObserver = new UseCaseObserver<List<Car>>() {
         @Override
         public void onSuccess(List<Car> object) {
             System.out.println("CaseObserverThread-->"+Thread.currentThread());
@@ -30,8 +30,8 @@ public class CarCaseExecutorTest {
         CarRepository carRepository = mock(CarRepository.class);
         CarCaseFactory caseFactory = new CarCaseFactory(carRepository);
         CarCaseExecutor carCaseExecutor = new CarCaseExecutor();
-        carCaseExecutor.setCaseObserver(caseObserver);
-        carCaseExecutor.setAsyncTask(caseFactory.getAllCars());
+        carCaseExecutor.setUseCaseObserver(useCaseObserver);
+        carCaseExecutor.setUseCaseTask(caseFactory.getAllCars());
         carCaseExecutor.execute();
         //verify(carRepository, atLeastOnce()).getCarList();
     }

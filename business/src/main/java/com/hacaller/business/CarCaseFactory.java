@@ -1,6 +1,5 @@
 package com.hacaller.business;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -19,7 +18,7 @@ public class CarCaseFactory {
         return new Callable<List<Car>>() {
             @Override
             public List<Car> call() {
-                System.out.println("BusinessLogicThread-->BlackBox-->"+Thread.currentThread());
+                System.out.println("BusinessLogicThread-->BlackBox: "+Thread.currentThread());
                 return carRepository.getCarList();
             }
         };
@@ -29,7 +28,7 @@ public class CarCaseFactory {
         return new Callable<List<Car>>() {
             @Override
             public List<Car> call() throws Exception {
-                System.out.println("BusinessLogicThread-->BlackBox-->"+Thread.currentThread());
+                System.out.println("BusinessLogicThread-->BlackBox: "+Thread.currentThread());
                 return carRepository.getTopRatedCars();
             }
         };

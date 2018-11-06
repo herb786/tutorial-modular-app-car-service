@@ -1,13 +1,15 @@
 package com.hacaller.services.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Herbert Caller on 04/11/2018.
  */
 public class CarPhoto {
 
-    String name;
+    @SerializedName("name") String name;
 
-    String photo;
+    @SerializedName("photo") String photo;
 
     public CarPhoto(String name, String photo) {
         this.name = name;

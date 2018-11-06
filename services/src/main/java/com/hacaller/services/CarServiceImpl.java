@@ -13,17 +13,17 @@ import java.util.List;
  */
 public class CarServiceImpl implements CarService {
 
-    ServiceFactory serviceFactory;
+    ServiceEndpoint serviceEndpoint;
 
-    public CarServiceImpl(ServiceFactory serviceFactory) {
-        this.serviceFactory = serviceFactory;
+    public CarServiceImpl(ServiceEndpoint serviceEndpoint) {
+        this.serviceEndpoint = serviceEndpoint;
     }
 
     @Override
     public List<CarData> fetchCars() {
         List<CarData> cars = new ArrayList<>();
         try {
-            List<CarResponse> list = serviceFactory.getCustomRetrofitService()
+            List<CarResponse> list = serviceEndpoint
                     .getCars()
                     .execute()
                     .body();

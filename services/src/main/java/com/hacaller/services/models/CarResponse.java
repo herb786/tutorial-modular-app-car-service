@@ -1,5 +1,7 @@
 package com.hacaller.services.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -7,18 +9,20 @@ import java.util.List;
  */
 public class CarResponse {
 
-    int id;
-    String logo;
-    String website;
-    String founders;
-    int foundedYear;
-    String foundedCity;
-    List<CarPhoto> carPhotos;
+    @SerializedName("id") int id;
+    @SerializedName("logo") String logo;
+    @SerializedName("brand") String brand;
+    @SerializedName("website") String website;
+    @SerializedName("founders") String founders;
+    @SerializedName("founded_year") int foundedYear;
+    @SerializedName("founded_city") String foundedCity;
+    @SerializedName("models") List<CarPhoto> carPhotos;
 
-    public CarResponse(int id, String logo, String website, String founders,
+    public CarResponse(int id, String logo, String brand, String website, String founders,
                        int foundedYear, String foundedCity, List<CarPhoto> carPhotos) {
         this.id = id;
         this.logo = logo;
+        this.brand = brand;
         this.website = website;
         this.founders = founders;
         this.foundedYear = foundedYear;
@@ -80,5 +84,13 @@ public class CarResponse {
 
     public void setCarPhotos(List<CarPhoto> carPhotos) {
         this.carPhotos = carPhotos;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }
