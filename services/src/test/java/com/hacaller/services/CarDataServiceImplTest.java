@@ -13,13 +13,13 @@ import java.util.List;
  */
 public class CarDataServiceImplTest {
 
-    ServiceFactory serviceFactory;
+    CarApiAdapter carApiAdapter;
     CarServiceImpl carServiceImpl;
 
     @Before
     public void setup() {
-        serviceFactory = new ServiceFactory();
-        carServiceImpl = new CarServiceImpl(serviceFactory);
+        carApiAdapter = new CarApiAdapter();
+        carServiceImpl = new CarServiceImpl(carApiAdapter);
     }
 
     @Test

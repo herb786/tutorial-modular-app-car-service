@@ -6,11 +6,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by Herbert Caller on 04/11/2018.
  */
-public class ServiceFactory {
+public class CarApiAdapter implements ApiAdapter {
 
-    public static ServiceEndpoint buildRetrofitService()  {
-        return getCustomRetrofit().create(ServiceEndpoint.class);
+    @Override
+    public ApiEndpoints connect() {
+        return getCustomRetrofit().create(ApiEndpoints.class);
     }
+
+    @Override
+    public Retrofit.Builder setLogging(boolean hasLog) {
+        return null;
+    }
+
 
     public static Retrofit getCustomRetrofit() {
         return new Retrofit.Builder()

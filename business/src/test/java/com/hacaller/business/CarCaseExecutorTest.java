@@ -28,8 +28,8 @@ public class CarCaseExecutorTest {
     @Test
     public void testThreads(){
         CarRepository carRepository = mock(CarRepository.class);
-        CarCaseFactory caseFactory = new CarCaseFactory(carRepository);
-        CarCaseExecutor carCaseExecutor = new CarCaseExecutor();
+        CarUseCases caseFactory = new CarUseCases(carRepository);
+        CarCaseExecutorVanilla carCaseExecutor = new CarCaseExecutorVanilla();
         carCaseExecutor.setUseCaseObserver(useCaseObserver);
         carCaseExecutor.setUseCaseTask(caseFactory.getAllCars());
         carCaseExecutor.execute();

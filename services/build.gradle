@@ -4,7 +4,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     def testServDeps = rootProject.ext.unitTesting
     def servDeps = rootProject.ext.network
-    implementation project(':data')
+    implementation project(':persistence')
 
     implementation servDeps.gson
     implementation servDeps.okhttp

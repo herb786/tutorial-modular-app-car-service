@@ -1,7 +1,7 @@
 package com.hacaller.modularappcars;
 
 import com.hacaller.business.Car;
-import com.hacaller.business.CarCaseExecutor;
+import com.hacaller.business.CarCaseExecutorVanilla;
 import com.hacaller.business.UseCaseObserver;
 
 import java.util.List;
@@ -15,11 +15,16 @@ public class CarViewModel {
 
     public void loadCars(){
 
-        CarCaseExecutor carCaseExecutor = new CarCaseExecutor();
+        CarCaseExecutorVanilla carCaseExecutor = new CarCaseExecutorVanilla();
         carCaseExecutor.setUseCaseTask(ApplicationEntryPoint.getInstance().getCarCaseFactory().getAllCars());
         carCaseExecutor.setUseCaseObserver(new UseCaseObserver<List<Car>>() {
             @Override
             public void onSuccess(List<Car> carList) {
+                // From Business Layer
+                //  |
+                //  |
+                //  V
+                // Presentation Layer
                 if (carListAdapter != null) carListAdapter.setCarList(carList);
             }
 

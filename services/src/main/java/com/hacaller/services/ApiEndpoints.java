@@ -8,9 +8,9 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 /**
- * Created by Herbert Caller on 04/11/2018.
+ * Created by Herbert Caller on 06/11/2018.
  */
-public interface ServiceEndpoint {
+public interface ApiEndpoints {
 
     @GET("/api/cars")
     Call<List<CarResponse>> getCars();

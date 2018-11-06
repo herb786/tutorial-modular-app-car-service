@@ -12,34 +12,34 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by Herbert Caller on 04/11/2018.
  */
-public class CarCaseFactoryTest {
+public class CarUseCasesTest {
 
     @Mock
     CarRepository carRepository;
 
-    CarCaseFactory carCaseFactory;
+    CarUseCases carUseCases;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        carCaseFactory = new CarCaseFactory(carRepository);
+        carUseCases = new CarUseCases(carRepository);
     }
 
     @Test
     public void getAllCars() {
-        carCaseFactory.getAllCars();
+        carUseCases.getAllCars();
         verify(carRepository, atLeastOnce()).getCarList();
     }
 
     @Test
     public void getTopRatedCars() {
-        carCaseFactory.getTopRatedCars();
+        carUseCases.getTopRatedCars();
         verify(carRepository, atLeastOnce()).getTopRatedCars();
     }
 
     @Test
     public void setCarRating() {
-        carCaseFactory.setCarRating(anyInt());
+        carUseCases.setCarRating(anyInt());
         verify(carRepository, atLeastOnce()).setCarRating(anyInt());
     }
 }

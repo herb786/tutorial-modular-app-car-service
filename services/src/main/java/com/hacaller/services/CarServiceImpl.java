@@ -13,17 +13,17 @@ import java.util.List;
  */
 public class CarServiceImpl implements CarService {
 
-    ServiceEndpoint serviceEndpoint;
+    ApiAdapter apiAdapter;
 
-    public CarServiceImpl(ServiceEndpoint serviceEndpoint) {
-        this.serviceEndpoint = serviceEndpoint;
+    public CarServiceImpl(ApiAdapter apiAdapter) {
+        this.apiAdapter = apiAdapter;
     }
 
     @Override
     public List<CarData> fetchCars() {
         List<CarData> cars = new ArrayList<>();
         try {
-            List<CarResponse> list = serviceEndpoint
+            List<CarResponse> list = apiAdapter.connect()
                     .getCars()
                     .execute()
                     .body();

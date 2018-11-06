@@ -2,13 +2,13 @@ package com.hacaller.modularappcars;
 
 import android.app.Application;
 
-import com.hacaller.business.CarCaseFactory;
+import com.hacaller.business.CarUseCases;
 import com.hacaller.business.CarRepository;
 import com.hacaller.data.CarRepositoryImpl;
 import com.hacaller.data.CarService;
 import com.hacaller.services.CarServiceImpl;
-import com.hacaller.services.ServiceEndpoint;
-import com.hacaller.services.ServiceFactory;
+import com.hacaller.services.ApiAdapter;
+import com.hacaller.services.CarApiAdapter;
 
 /**
  * Created by Herbert Caller on 06/11/2018.
@@ -30,20 +30,34 @@ public class ApplicationEntryPoint extends Application {
     }
 
     // Without DI Container
-    CarCaseFactory getCarCaseFactory(){
-        return new CarCaseFactory(getCarRepository());
+
+    // From Client Layer /*View Model*/
+    //  |
+    //  |
+    //  V
+    // Business Layer
+    CarUseCases getCarCaseFactory(){
+        return new CarUseCases(getCarRepository());
     }
 
+    //  |
+    //  |
+    //  V
+    // Persistence Layer
     CarRepository getCarRepository(){
         return new CarRepositoryImpl(getCarService());
     }
 
+    //  |
+    //  |
+    //  V
+    // Service Layer
     CarService getCarService(){
-        return new CarServiceImpl(getServiceEndpoint());
+        return new CarServiceImpl(getApiAdapter());
     }
 
-    ServiceEndpoint getServiceEndpoint(){
-        return ServiceFactory.buildRetrofitService();
+    ApiAdapter getApiAdapter(){
+        return new CarApiAdapter();
     }
 
 }

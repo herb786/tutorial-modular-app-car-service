@@ -6,11 +6,11 @@ import java.util.concurrent.Callable;
 /**
  * Created by Herbert Caller on 04/11/2018.
  */
-public class CarCaseFactory {
+public class CarUseCases {
 
     CarRepository carRepository;
 
-    public CarCaseFactory(CarRepository carRepository) {
+    public CarUseCases(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
 
