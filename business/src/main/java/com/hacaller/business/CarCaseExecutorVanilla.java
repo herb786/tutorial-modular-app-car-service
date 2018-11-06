@@ -21,9 +21,8 @@ public class CarCaseExecutorVanilla extends UseCaseExecutorFactory {
         return this;
     }
 
-    public CarCaseExecutorVanilla setCarUseCase(CarUseCase carUseCase) {
+    public void setCarUseCase(CarUseCase carUseCase) {
         this.carUseCase = carUseCase;
-        return this;
     }
 
     public void setCarUseCase(CarUseCase carUseCase , int optional) {
@@ -47,7 +46,6 @@ public class CarCaseExecutorVanilla extends UseCaseExecutorFactory {
                 executor.submit(setCarRating(optional));
                 break;
         }
-        executor.submit(futureTask);
         try {
             if (useCaseObserver == null) return;
             if (futureTask == null) return;

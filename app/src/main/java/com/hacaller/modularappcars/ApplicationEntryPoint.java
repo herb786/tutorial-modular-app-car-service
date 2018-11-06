@@ -39,8 +39,8 @@ public class ApplicationEntryPoint extends Application {
     //  |
     //  V
     // Business Layer
-    CarCaseExecutorVanilla getCarCaseExecutor(){
-        return new CarCaseExecutorVanilla().setCarRepository(getCarRepository());
+    CarCaseExecutorCanary getCarCaseExecutor(){
+        return new CarCaseExecutorCanary().setCarRepository(getCarRepository());
     }
 
     //  |

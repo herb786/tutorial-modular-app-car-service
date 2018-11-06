@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -26,14 +27,25 @@ public class CarCaseExecutorTest {
     };
 
     @Test
-    public void testThreads(){
+    public void testVanillaThreads(){
         CarRepository carRepository = mock(CarRepository.class);
         CarCaseExecutorVanilla carCaseExecutor = new CarCaseExecutorVanilla();
         carCaseExecutor.setUseCaseObserver(useCaseObserver);
         carCaseExecutor.setCarRepository(carRepository);
         carCaseExecutor.setCarUseCase(CarUseCase.GetAllCars);
         carCaseExecutor.execute();
-        //verify(carRepository, atLeastOnce()).getCarList();
+        verify(carRepository, atLeastOnce()).getCarList();
+    }
+
+    @Test
+    public void testCanaryThreads(){
+        CarRepository carRepository = mock(CarRepository.class);
+        CarCaseExecutorCanary carCaseExecutor = new CarCaseExecutorCanary();
+        carCaseExecutor.setUseCaseObserver(useCaseObserver);
+        carCaseExecutor.setCarRepository(carRepository);
+        carCaseExecutor.setCarUseCase(CarUseCase.GetAllCars);
+        carCaseExecutor.execute();
+        verify(carRepository, atLeastOnce()).getCarList();
     }
 
 

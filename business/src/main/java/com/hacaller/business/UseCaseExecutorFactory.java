@@ -28,7 +28,7 @@ public abstract class UseCaseExecutorFactory {
     }
 
     void showWorkingThread(){
-        System.out.println("BusinessLogicThread-->End: "+Thread.currentThread());
+        System.out.println("BusinessLogicThread-->Thread: "+Thread.currentThread());
     }
 
     <T> FutureTask createFutureTask(Callable<T> callable){
