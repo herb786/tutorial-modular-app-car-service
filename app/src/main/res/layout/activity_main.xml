@@ -22,7 +22,19 @@
             android:orientation="horizontal">
 
             <android.support.design.button.MaterialButton
-                android:id="@+id/btnAnime"
+                android:id="@+id/btnCarTop"
+                android:onClick="@{()-> carVm.loadTopCars()}"
+                android:background="#3a3a3b"
+                tools:background="?attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content"
+                android:textColor="#696969"
+                android:layout_weight="5"
+                android:text="TOP"/>
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btnCarAll"
                 android:onClick="@{()-> carVm.loadCars()}"
                 android:background="#3a3a3b"
                 tools:background="?attr/selectableItemBackground"
@@ -31,10 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#696969"
                 android:layout_weight="5"
-                android:text="GO">
-
-
-            </android.support.design.button.MaterialButton>
+                android:text="ALL"/>
 
         </LinearLayout>
 

@@ -24,11 +24,11 @@ public abstract class UseCaseExecutorFactory {
 
     void showElapsedTime(){
         elapsed = System.currentTimeMillis() - elapsed;
-        System.out.println("BusinessLogicThread-->Elapsed: "+elapsed+" ms");
+        System.out.println("\u001B[46mBusinessLogicThread-->Elapsed: "+elapsed+" ms");
     }
 
     void showWorkingThread(){
-        System.out.println("BusinessLogicThread-->Thread: "+Thread.currentThread());
+        System.out.println("\u001B[46mBusinessLogicThread-->Thread: "+Thread.currentThread());
     }
 
     <T> FutureTask createFutureTask(Callable<T> callable){

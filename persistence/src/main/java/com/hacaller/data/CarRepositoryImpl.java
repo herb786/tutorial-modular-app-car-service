@@ -3,7 +3,6 @@ package com.hacaller.data;
 import com.hacaller.business.Car;
 import com.hacaller.business.CarRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,28 +11,31 @@ import java.util.List;
 public class CarRepositoryImpl implements CarRepository {
 
     CarService carService;
+    CarDao carDao;
 
-    public CarRepositoryImpl(CarService carService) {
+    public CarRepositoryImpl(CarService carService, CarDao carDao) {
         this.carService = carService;
+        this.carDao = carDao;
     }
 
     @Override
     public List<Car> getCarList() {
-        List<Car> cars = new ArrayList<>();
-        for (CarData carData: carService.fetchCars()){
-            cars.add(carData.toBusinessCar());
+        List<CarData> data = carDao.getCars();
+        if (!data.isEmpty()) return CarDataMapper.toListBusinessCar(data);
+        if (data.isEmpty()) {
+            System.out.println("\u001B[46mCalling API service...");
+            data = carService.fetchCars();
         }
-        return cars;
+        for (CarData carData: data){
+            carDao.saveCar(carData);
+        }
+        return CarDataMapper.toListBusinessCar(data);
     }
 
     @Override
-    public void setCarRating(int id) {
-
+    public void updateCar(Car car) {
+        carDao.updateCar(CarDataMapper.toCarData(car));
     }
 
-    @Override
-    public List<Car> getTopRatedCars() {
-        return null;
-    }
 
 }

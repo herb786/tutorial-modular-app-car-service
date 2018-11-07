@@ -3,15 +3,14 @@ package com.hacaller.modularappcars;
 import android.app.Application;
 
 import com.hacaller.business.CarCaseExecutorCanary;
-import com.hacaller.business.CarCaseExecutorVanilla;
-import com.hacaller.business.CarUseCase;
 import com.hacaller.business.CarRepository;
-import com.hacaller.business.UseCaseExecutorFactory;
+import com.hacaller.data.CarDao;
 import com.hacaller.data.CarRepositoryImpl;
 import com.hacaller.data.CarService;
-import com.hacaller.services.CarServiceImpl;
+import com.hacaller.database.CarDaoImpl;
 import com.hacaller.services.ApiAdapter;
 import com.hacaller.services.CarApiAdapter;
+import com.hacaller.services.CarServiceImpl;
 
 /**
  * Created by Herbert Caller on 06/11/2018.
@@ -30,6 +29,7 @@ public class ApplicationEntryPoint extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        application = this;
     }
 
     // Without DI Container
@@ -48,13 +48,15 @@ public class ApplicationEntryPoint extends Application {
     //  V
     // Persistence Layer
     CarRepository getCarRepository(){
-        return new CarRepositoryImpl(getCarService());
+        return new CarRepositoryImpl(getCarService(), getCarDao());
     }
 
     //  |
     //  |
     //  V
-    // Service Layer
+    // Service/DAO Layer
+    //CarDao getAndroidCarDao() {return new CarDaoImpl(application); }
+    CarDao getCarDao() {return new CarDaoImpl(application); }
     CarService getCarService(){
         return new CarServiceImpl(getApiAdapter());
     }

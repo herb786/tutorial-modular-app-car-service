@@ -14,7 +14,7 @@ public class CarCaseExecutorVanilla extends UseCaseExecutorFactory {
     CarRepository carRepository;
     private FutureTask futureTask;
     CarUseCase carUseCase;
-    int optional;
+    Car optional;
 
     public CarCaseExecutorVanilla setCarRepository(CarRepository carRepository) {
         this.carRepository = carRepository;
@@ -25,7 +25,7 @@ public class CarCaseExecutorVanilla extends UseCaseExecutorFactory {
         this.carUseCase = carUseCase;
     }
 
-    public void setCarUseCase(CarUseCase carUseCase , int optional) {
+    public void setCarUseCase(CarUseCase carUseCase , Car optional) {
         this.carUseCase = carUseCase;
         this.optional = optional;
     }
@@ -74,16 +74,16 @@ public class CarCaseExecutorVanilla extends UseCaseExecutorFactory {
             @Override
             public List<Car> call() throws Exception {
                 System.out.println("BusinessLogicThread-->BlackBox: "+Thread.currentThread());
-                return carRepository.getTopRatedCars();
+                return carRepository.getCarList();
             }
         };
     }
 
-    public Runnable setCarRating(final int id) {
+    public Runnable setCarRating(final Car car) {
         return new Runnable() {
             @Override
             public void run() {
-                carRepository.setCarRating(id);
+                carRepository.updateCar(car);
             }
         };
     }

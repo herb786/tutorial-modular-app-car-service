@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/business" />
             <option value="$PROJECT_DIR$/database" />
+            <option value="$PROJECT_DIR$/jdatabase" />
             <option value="$PROJECT_DIR$/persistence" />
             <option value="$PROJECT_DIR$/services" />
           </set>

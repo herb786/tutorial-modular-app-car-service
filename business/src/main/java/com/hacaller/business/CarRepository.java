@@ -8,7 +8,6 @@ import java.util.List;
 public interface CarRepository {
 
     List<Car> getCarList();
-    void setCarRating(int id);
-    List<Car> getTopRatedCars();
+    void updateCar(Car car);
 
 }

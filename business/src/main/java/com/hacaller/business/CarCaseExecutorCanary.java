@@ -1,5 +1,6 @@
 package com.hacaller.business;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -16,7 +17,7 @@ public class CarCaseExecutorCanary extends UseCaseExecutorFactory {
     CompletableFuture completableFuture;
     CarRepository carRepository;
     CarUseCase carUseCase;
-    int optional;
+    Car optional;
 
     public CarCaseExecutorCanary setCarRepository(CarRepository carRepository) {
         this.carRepository = carRepository;
@@ -27,7 +28,7 @@ public class CarCaseExecutorCanary extends UseCaseExecutorFactory {
         this.carUseCase = carUseCase;
     }
 
-    public void setCarUseCase(CarUseCase carUseCase , int optional) {
+    public void setCarUseCase(CarUseCase carUseCase, Car optional) {
         this.carUseCase = carUseCase;
         this.optional = optional;
     }
@@ -48,7 +49,8 @@ public class CarCaseExecutorCanary extends UseCaseExecutorFactory {
                 break;
         }
         try {
-            useCaseObserver.onSuccess(completableFuture.get());
+            if (useCaseObserver != null ) useCaseObserver.onSuccess(completableFuture.get());
+            if (useCaseObserver == null ) completableFuture.get();
             showWorkingThread();
             showElapsedTime();
         } catch (InterruptedException | ExecutionException e) {
@@ -71,12 +73,18 @@ public class CarCaseExecutorCanary extends UseCaseExecutorFactory {
         return CompletableFuture.supplyAsync(new Supplier<List<Car>>() {
             @Override
             public List<Car> get() {
-                return carRepository.getTopRatedCars();
+                return carRepository.getCarList();
             }
         }).thenApply(new Function<List<Car>, List<Car>>() {
             @Override
             public List<Car> apply(List<Car> carList) {
-                return carList;
+                List<Car> cars = new ArrayList<>();
+                for (Car o: carList){
+                    if (o.rating > 3){
+                        cars.add(o);
+                    }
+                }
+                return cars;
             }
         });
     }
@@ -85,7 +93,7 @@ public class CarCaseExecutorCanary extends UseCaseExecutorFactory {
         return CompletableFuture.supplyAsync(new Supplier<Void>() {
             @Override
             public Void get() {
-                carRepository.setCarRating(optional);
+                carRepository.updateCar(optional);
                 return null;
             }
         });

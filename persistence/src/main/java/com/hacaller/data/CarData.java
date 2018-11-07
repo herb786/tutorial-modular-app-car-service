@@ -25,6 +25,10 @@ public class CarData {
         this.rating = rating;
     }
 
+    public CarData() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -81,8 +85,5 @@ public class CarData {
         this.brand = brand;
     }
 
-    public Car toBusinessCar(){
-        return new Car(id, logo, website, foundedYear, brand, carPhoto, rating);
-    }
 
 }

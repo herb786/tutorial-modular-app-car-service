@@ -1,1 +1,1 @@
-include ':app', ':business', ':services', ':database', ':persistence'
+include ':app', ':business', ':services', ':database', ':persistence', ':jdatabase'
