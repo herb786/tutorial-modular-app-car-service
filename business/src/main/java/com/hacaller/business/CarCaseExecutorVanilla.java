@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Herbert Caller on 04/11/2018.
  * Without RxJava
+ * Unfortunately it is blocking the UiThread
  */
 public class CarCaseExecutorVanilla extends UseCaseExecutorFactory {
 
@@ -32,6 +34,10 @@ public class CarCaseExecutorVanilla extends UseCaseExecutorFactory {
 
     public void execute(){
         if (carUseCase == null) return;
+        asyncNonBlockingTask();
+    }
+
+    private void asyncNonBlockingTask() {
         showWorkingThread();
         switch(carUseCase){
             case GetAllCars:
@@ -56,13 +62,18 @@ public class CarCaseExecutorVanilla extends UseCaseExecutorFactory {
             if (useCaseObserver == null) return;
             useCaseObserver.onFailure(e);
         }
+        try {
+            executor.awaitTermination(30, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         executor.shutdown();
     }
 
     public Callable<List<Car>> getAllCars() {
         return new Callable<List<Car>>() {
             @Override
-            public List<Car> call() {
+            public List<Car> call() throws InterruptedException {
                 System.out.println("BusinessLogicThread-->BlackBox: "+Thread.currentThread());
                 return carRepository.getCarList();
             }

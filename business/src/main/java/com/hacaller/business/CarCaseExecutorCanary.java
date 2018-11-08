@@ -36,7 +36,6 @@ public class CarCaseExecutorCanary extends UseCaseExecutorFactory {
     @Override
     public void execute() {
         //if (task == null) return;
-        showWorkingThread();
         switch(carUseCase){
             case GetAllCars:
                 completableFuture = createCompletableAllCars();
@@ -51,7 +50,6 @@ public class CarCaseExecutorCanary extends UseCaseExecutorFactory {
         try {
             if (useCaseObserver != null ) useCaseObserver.onSuccess(completableFuture.get());
             if (useCaseObserver == null ) completableFuture.get();
-            showWorkingThread();
             showElapsedTime();
         } catch (InterruptedException | ExecutionException e) {
             if (useCaseObserver == null) return;
@@ -64,20 +62,23 @@ public class CarCaseExecutorCanary extends UseCaseExecutorFactory {
         return CompletableFuture.supplyAsync(new Supplier<List<Car>>() {
             @Override
             public List<Car> get() {
+                showWorkingThread();
                 return carRepository.getCarList();
             }
-        });
+        }, executor);
     }
 
     CompletableFuture<List<Car>> createCompletableTopRatedCars(){
         return CompletableFuture.supplyAsync(new Supplier<List<Car>>() {
             @Override
             public List<Car> get() {
+                showWorkingThread();
                 return carRepository.getCarList();
             }
-        }).thenApply(new Function<List<Car>, List<Car>>() {
+        }, executor).thenApply(new Function<List<Car>, List<Car>>() {
             @Override
             public List<Car> apply(List<Car> carList) {
+                showWorkingThread();
                 List<Car> cars = new ArrayList<>();
                 for (Car o: carList){
                     if (o.rating > 3){
@@ -93,10 +94,11 @@ public class CarCaseExecutorCanary extends UseCaseExecutorFactory {
         return CompletableFuture.supplyAsync(new Supplier<Void>() {
             @Override
             public Void get() {
+                showWorkingThread();
                 carRepository.updateCar(optional);
                 return null;
             }
-        });
+        }, executor);
     }
 
 

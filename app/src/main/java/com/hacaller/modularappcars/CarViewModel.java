@@ -1,9 +1,7 @@
 package com.hacaller.modularappcars;
 
-import android.widget.RatingBar;
-
+import com.hacaller.abusiness.CarCaseHermes;
 import com.hacaller.business.Car;
-import com.hacaller.business.CarCaseExecutorCanary;
 import com.hacaller.business.CarUseCase;
 import com.hacaller.business.UseCaseObserver;
 
@@ -15,7 +13,7 @@ import java.util.List;
 public final class CarViewModel {
 
     CarListAdapter carListAdapter = new CarListAdapter();
-    CarCaseExecutorCanary carCaseExecutor = ApplicationEntryPoint.getInstance().getCarCaseExecutor();
+    CarCaseHermes carCaseExecutor = ApplicationEntryPoint.getInstance().getCarCaseExecutor();
 
     public void loadCars(){
         carCaseExecutor.setCarUseCase(CarUseCase.GetAllCars);

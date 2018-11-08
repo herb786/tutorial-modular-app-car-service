@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 
+import com.hacaller.abusiness.CarCaseHermes;
 import com.hacaller.business.Car;
-import com.hacaller.business.CarCaseExecutorCanary;
 import com.hacaller.business.CarUseCase;
 import com.hacaller.modularappcars.databinding.CarItemBinding;
 import com.squareup.picasso.Picasso;
@@ -22,7 +22,7 @@ import java.util.List;
 public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.CarViewHolder> {
 
     List<Car> carList = new ArrayList<>();
-    CarCaseExecutorCanary carCaseExecutor;
+    CarCaseHermes carCaseExecutor;
 
     public void setCarList(List<Car> cars) {
         carList.clear();
@@ -30,7 +30,7 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.CarViewH
         notifyDataSetChanged();
     }
 
-    public void setCarCaseExecutor(CarCaseExecutorCanary carCaseExecutor) {
+    public void setCarCaseExecutor(CarCaseHermes carCaseExecutor) {
         this.carCaseExecutor = carCaseExecutor;
     }
 

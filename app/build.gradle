@@ -25,19 +25,21 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':business')
+    implementation project(':abusiness')
     implementation project(':persistence')
     implementation project(':services')
     implementation project(':database')
     //implementation project(':jdatabase')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation rootProject.ext.uiDesign.cardView
-    implementation rootProject.ext.uiDesign.recycler
-    implementation rootProject.ext.uiDesign.constraintLayout
-    implementation rootProject.ext.uiDesign.design
-    implementation rootProject.ext.uiDesign.picasso
-    annotationProcessor rootProject.ext.annotationProc.databinding
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support.constraint:constraint-layout:$constraint_version"
+    implementation "com.android.support:recyclerview-v7:$support_version"
+    implementation "com.android.support:design:$support_version"
+    implementation "com.android.support:cardview-v7:$support_version"
+    implementation ("com.squareup.picasso:picasso:$picasso_version") {
+        exclude group: 'com.android.support'
+    }
+    annotationProcessor "com.android.databinding:compiler:$gradle_plugin"
 }

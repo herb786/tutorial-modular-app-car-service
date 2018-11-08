@@ -2,11 +2,9 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    def testDataDeps = rootProject.ext.unitTesting
     implementation project(':business')
-
-    testImplementation testDataDeps.junit
-    testImplementation testDataDeps.mockito
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
 }
 
 sourceCompatibility = "7"

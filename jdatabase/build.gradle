@@ -2,12 +2,11 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    def testServDeps = rootProject.ext.unitTesting
     implementation project(':persistence')
 
     implementation 'org.xerial:sqlite-jdbc:3.25.2'
-    testImplementation testServDeps.junit
-    testImplementation testServDeps.mockito
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
 }
 
 sourceCompatibility = "7"
